@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProdutoDetalhe extends Model
+class ItemDetalhe extends Model
 {
     use HasFactory;
+    
+    protected $table = 'produto_detalhes';
 
     protected $fillable = [
         'produto_id',
@@ -18,8 +20,6 @@ class ProdutoDetalhe extends Model
     ];
 
     public function produto(){
-        return $this->belongsTo('App\Models\Produto', 'produto_id', 'id');
-        //2 pârametro é a fk, 3 é a pk que no caso é produto_detalhe_id == id;
+        return $this->belongsTo('App\Models\Item');
     }
-    
 }

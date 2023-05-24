@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produto extends Model
+class Item extends Model
 {
     use HasFactory;
+
+    protected $table = 'produtos';
 
     protected $fillable = [
         'nome',
@@ -16,13 +18,7 @@ class Produto extends Model
         'unidade_id',
     ];
 
-
     public function produtoDetalhe(){
-        return $this->hasOne('App\Models\ProdutoDetalhe');
-        /*
-        this -> objeto em questão no caso o PRODUTO.
-        1- Um Produto tem um produto_detalhe
-        2- Em produto_detalhes temos uma (fk) de produto_d pois é a tabela mais fraca
-        */ 
+        return $this->hasOne('App\Models\ItemDetalhe', 'produto_id', 'id');
     }
 }
