@@ -24,8 +24,19 @@ Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
     Route::get('/home', [HomeController::class,  'index'])->name('app.home');
     Route::get('/sair', [LoginController::class,  'sair'])->name('app.sair');
     Route::get('/cliente', [ClienteController::class,  'index'])->name('app.cliente');
+
+    //produtos
+    Route::resource('produto', ProdutoController::class);
+    
+    
     Route::get('/fornecedor', [fornecedorController::class,  'index'])->name('app.fornecedor');
-    Route::get('/produto', [ProdutoController::class,  'index'])->name('app.produto');
+    Route::post('/fornecedor/listar', [fornecedorController::class,  'listar'])->name('app.fornecedor.listar');
+    Route::get('/fornecedor/listar', [fornecedorController::class,  'listar'])->name('app.fornecedor.listar');
+    Route::get('/fornecedor/adicionar', [fornecedorController::class,  'adicionar'])->name('app.fornecedor.adicionar');
+    Route::post('/fornecedor/adicionar', [fornecedorController::class,  'adicionar'])->name('app.fornecedor.adicionar');
+    Route::get('/fornecedor/editar/{id}/{msg?}', [fornecedorController::class,  'editar'])->name('app.fornecedor.editar');
+    Route::get('/fornecedor/excluir/{id}', [fornecedorController::class,  'delete'])->name('app.fornecedor.delete');
+//11 95342-82-98 11 4324-5908
 });
 
 
