@@ -52,19 +52,21 @@ class ProdutoController extends Controller
     public function show(Produto $produto)
     {
         $unidades = Unidade::all();
-        return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.show', ['produto' => $produto, 'unidades' => $unidades]);
     }
   
     public function edit(Produto $produto)
     {
         $unidades = Unidade::all();
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+
+        //return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
     }
 
     public function update(Request $request, Produto $produto)
-    {
-        $produto->update( $request->all() );
-        return redirect()->route('produto.show', ['produto', $produto]);
+    {   
+        $produto->update($request->all());
+        return redirect()->route('produto.show',['produto' => $produto]);
     }
 
     public function destroy(Produto $produto)
