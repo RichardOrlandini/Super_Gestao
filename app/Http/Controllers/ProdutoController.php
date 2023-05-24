@@ -14,16 +14,8 @@ class ProdutoController extends Controller
     {
         $produtos = Produto::paginate(10);
         
-        foreach($produtos as $key => $produto){ //o foreach vai retornar um novo array de produtos
-
-            $produtoDetalhe = ProdutoDetalhe::where('produto_id', $produto->id)->first(); //var auxiliar
-
-            if(isset($produtoDetalhe)) {
-                $produtos[$key]['comprimento'] = $produtoDetalhe->comprimento;
-                $produtos[$key]['largura'] = $produtoDetalhe->largura;
-                $produtos[$key]['altura'] = $produtoDetalhe->altura;
-            }
-        }
+        //1 para 1;
+      
 
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
