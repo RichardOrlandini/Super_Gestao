@@ -33,7 +33,7 @@
                      @foreach ($produtos as $produto)
                         <tr>
                             <td>{{$produto->nome}}</td>
-                            <td>{{$produto->descricao}}</td>
+                            <td>{{$produto->descrição}}</td>
                             <td>{{$produto->peso}}</td>
                             <td>{{$produto->unidade_id}}</td>
                             <td><a href="{{ route('produto.show', ['produto' => $produto->id])}}">Visualizar</td>
