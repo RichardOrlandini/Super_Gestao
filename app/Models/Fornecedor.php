@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Fornecedor extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
 
     protected $table = 'fornecedores';
 
@@ -19,7 +21,13 @@ class Fornecedor extends Model
         'email'
     ];
 
-    use SoftDeletes;
 
+    public function produtos(){
+        //return $this->hasMany('App\Item', 'fornecedor_id', 'id');
+        //como ja estamos seguindo os nomes padrões:
+        return $this->hasMany('App\Models\Item');
+    }
+
+  
 
 }

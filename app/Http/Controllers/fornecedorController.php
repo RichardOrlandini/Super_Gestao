@@ -37,11 +37,11 @@ class fornecedorController extends Controller
 
     public function listar(Request $request){
 
-        $fornecedores = Fornecedor::where('nome', 'like', '%' .$request->input('nome'). '%' )
+        $fornecedores = Fornecedor::with(['produtos'])->where('nome', 'like', '%' .$request->input('nome'). '%' )
             ->where('site', 'like', '%' .$request->input('site'). '%' )
             ->where('uf', 'like', '%' .$request->input('uf'). '%' )
             ->where('email', 'like', '%' .$request->input('email'). '%' )
-            ->paginate(2);
+            ->paginate(5);
         
         return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
@@ -83,7 +83,7 @@ class fornecedorController extends Controller
             $update =  $fornecedor->update($request->all());
             $update ? $msg =  "Atualização realizado com sucesso." : $msg = "Erro ao tentar atualizar o registro.";
             
-            return redirect()-route('app.fornecedor.editar', ['id' => $request->input('id'), 'msg' => $msg]);
+            return redirect()->route('app.fornecedor.editar', ['id' => $request->input('id'), 'msg' => $msg]);
 
         }
         return view('app.fornecedor.adicionar', ['msg' => $msg]);
